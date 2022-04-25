@@ -15,6 +15,7 @@
                 dense
                 prepend-icon="mdi-ray-start"
                 v-model="num1"
+                :rules="rule_bot_name"
               >
               </v-text-field>
             </v-col>
@@ -26,6 +27,7 @@
                 rounded
                 dense
                 v-model="num2"
+                :rules="rule_bot_name"
                 prepend-icon="mdi-ray-start-end"
               ></v-text-field>
             </v-col>
@@ -163,8 +165,15 @@ export default {
         },
       ],
       editedIndex: -1,
+      rule_bot_name: [
+        v => !!v || "กรุณากรอกเป็นตัวเลข.",
+        v => /^[0-9]{1,}([,.][0-9]{1,})?$/.test(v) || "เฉพาะตัวเลขเท่านั้น."
+        // v => v.length <= 3 || 'กรอกข้อมูลเยอะเกินไป!',
+      ],
     };
+    
   },
+  
 
   // created() {
   //   // this.getData();
